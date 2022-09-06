@@ -11,6 +11,7 @@ public class TreeLogOpt<T>
 	public TreeLogType Type { get; set; } = TreeLogType.Inline;
 	public Func<T, string>? FormatFun { get; set; }
 	public int TraversalIndentPerLevel { get; set; } = 2;
+	public int LeadingSpaceCount { get; set; } = 0;
 
 	internal static TreeLogOpt<T> Build(Action<TreeLogOpt<T>>? action)
 	{
@@ -23,17 +24,20 @@ public class TreeLogOpt<T>
 
 public static class Algo_Logging
 {
+	public static string LogToString<T>(this TNod<T> root, Action<TreeLogOpt<T>>? optFun = null) => string.Join(Environment.NewLine, root.LogToStrings(optFun));
 	public static string[] LogToStrings<T>(this TNod<T> root, Action<TreeLogOpt<T>>? optFun = null)
 	{
 		var opt = TreeLogOpt<T>.Build(optFun);
 		string FmtDefault(T v) => $"{v}";
 		var strTree = root.Map(opt.FormatFun ?? FmtDefault);
-		return opt.Type switch
+		var lines = opt.Type switch
 		{
 			TreeLogType.Inline => strTree.LogInline(opt),
 			TreeLogType.Traversal => strTree.LogTraversal(opt),
 			_ => throw new ArgumentException()
 		};
+		var leadingStr = new string(' ', opt.LeadingSpaceCount);
+		return lines.SelectToArray(e => $"{leadingStr}{e}");
 	}
 
 

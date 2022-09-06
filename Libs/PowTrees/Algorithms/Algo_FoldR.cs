@@ -30,13 +30,26 @@ public static class Algo_FoldR
 		Func<T, IReadOnlyList<U>, U> fun
 	)
 		where T : notnull
-	{
-		var mappedTree = root.FoldR(fun);
-		var dict = root.Zip(mappedTree)
-			.ToDictionary(
-				e => e.First.V,
-				e => e.Second.V
-			);
-		return dict;
-	}
+		=>
+			root
+				.FoldR(fun)
+				.Zip(root)
+				.ToDictionary(
+					e => e.Second.V,
+					e => e.First.V
+				);
+
+	public static Dictionary<TNod<T>, U> FoldRDictN<T, U>(
+		this TNod<T> root,
+		Func<T, IReadOnlyList<U>, U> fun
+	)
+		where T : notnull
+		=>
+			root
+				.FoldR(fun)
+				.Zip(root)
+				.ToDictionary(
+					e => e.Second,
+					e => e.First.V
+				);
 }

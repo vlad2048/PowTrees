@@ -28,13 +28,27 @@ public static class Algo_FoldL
 	)
 		where T : notnull
 		where U : class
-	{
-		var mappedTree = root.FoldL(fun);
-		var dict = root.Zip(mappedTree)
-			.ToDictionary(
-				e => e.First.V,
-				e => e.Second.V
-			);
-		return dict;
-	}
+		=>
+			root
+				.FoldL(fun)
+				.Zip(root)
+				.ToDictionary(
+					e => e.Second.V,
+					e => e.First.V
+				);
+
+	public static Dictionary<TNod<T>, U> FoldLDictN<T, U>(
+		this TNod<T> root,
+		Func<T, U?, U> fun
+	)
+		where T : notnull
+		where U : class
+		=>
+			root
+				.FoldL(fun)
+				.Zip(root)
+				.ToDictionary(
+					e => e.Second,
+					e => e.First.V
+				);
 }

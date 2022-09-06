@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Serializer\" />
     <Folder Include="_Internal\" />
   </ItemGroup>
 
