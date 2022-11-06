@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Serializer\" />
-    <Folder Include="_Internal\" />
+    <Folder Include="Algorithms\Layout\Leafifying\Structs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PowBasics.Geom" Version="0.0.1" />
   </ItemGroup>
 
 </Project>

@@ -54,7 +54,7 @@ public static class Algo_Filter
 		{
 			if (!predicate(node, lvl)) return Array.Empty<TNod<T>>();
 			var children = node.Children.Select(e => Recurse(e, lvl + 1)).SelectMany(e => e);
-			return new[] { new TNod<T>(node.V, children) };
+			return new[] { Nod.Make(node.V, children) };
 		}
 		return Recurse(root, 0);
 	}

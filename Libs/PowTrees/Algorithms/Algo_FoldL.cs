@@ -15,7 +15,7 @@ public static class Algo_FoldL
 		{
 			var mappedNodeVal = fun(node.V, mayMappedParentVal);
 			var mappedChildren = node.Children.Select(child => Recurse(child, mappedNodeVal));
-			var mappedNode = new TNod<U>(mappedNodeVal, mappedChildren);
+			var mappedNode = Nod.Make(mappedNodeVal, mappedChildren);
 			return mappedNode;
 		}
 

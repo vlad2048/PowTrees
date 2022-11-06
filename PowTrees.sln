@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{E0676ECA-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{51F6A0D5-FD2E-4933-A94B-DF93ABF0B1FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowTrees.Tests", "Tests\PowTrees.Tests\PowTrees.Tests.csproj", "{B33B48A0-284E-47BE-83FC-C8C0F50F7668}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowTrees.Tests", "Tests\PowTrees.Tests\PowTrees.Tests.csproj", "{B33B48A0-284E-47BE-83FC-C8C0F50F7668}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C10E3151-FFA6-4E45-9B7A-46DCDCF30101}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		License.txt = License.txt
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowTrees.LINQPad", "Libs\PowTrees.LINQPad\PowTrees.LINQPad.csproj", "{BE6223FC-AC45-4743-A705-E93D69B2CEEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B33B48A0-284E-47BE-83FC-C8C0F50F7668}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B33B48A0-284E-47BE-83FC-C8C0F50F7668}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B33B48A0-284E-47BE-83FC-C8C0F50F7668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE6223FC-AC45-4743-A705-E93D69B2CEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6223FC-AC45-4743-A705-E93D69B2CEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6223FC-AC45-4743-A705-E93D69B2CEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6223FC-AC45-4743-A705-E93D69B2CEEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8591238A-1389-4EA8-A7BB-45F46625D477} = {E0676ECA-37AC-4681-8E19-603A6B1116E1}
 		{B33B48A0-284E-47BE-83FC-C8C0F50F7668} = {51F6A0D5-FD2E-4933-A94B-DF93ABF0B1FA}
+		{BE6223FC-AC45-4743-A705-E93D69B2CEEE} = {E0676ECA-37AC-4681-8E19-603A6B1116E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86D1C3DD-D1CA-4F79-80E7-03D9C7A1DD01}

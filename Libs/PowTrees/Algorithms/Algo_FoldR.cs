@@ -15,7 +15,7 @@ public static class Algo_FoldR
 		{
 			var foldedChildren = node.Children
 				.Select(Recurse).ToArray();
-			var foldedNode = new TNod<U>(
+			var foldedNode = Nod.Make(
 				fun(node.V, foldedChildren.Select(e => e.V).ToArray()),
 				foldedChildren
 			);
