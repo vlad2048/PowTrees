@@ -13,8 +13,11 @@ void Main()
 {
 	Utils.SetStyles();
 	//Util.ReadLine();
-	var root = Utils.MakeRndTree(maxDepth: 3, maxChildCount: 3, seed: 7);
-	root.Draw();
+	//var root = Utils.MakeRndTree(maxDepth: 3, maxChildCount: 3, seed: 7);
+	
+	var root = Utils.MakeRndTree(maxDepth: 4, maxChildCount: 5, seed: null);
+	
+	//root.Draw();
 	root.Dump();
 }
 
