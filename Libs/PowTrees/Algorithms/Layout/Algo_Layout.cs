@@ -41,6 +41,7 @@ public static class Algo_Layout
 		);
 	}
 
+
 	private static Dictionary<TNod<Sz>, int> SolveXs(this TNod<Sz> rootSz, bool alignLevels) =>
 		rootSz
 			.MapN(sz => sz.V.Width)
@@ -52,11 +53,6 @@ public static class Algo_Layout
 			.ShiftTreeMapDown(0)
 			.MapKey(e => mapBack[e]);
 
-	private static TNod<TDst> MapBack<TSrc, TDst>(this TNod<TDst> rootDst, TNod<TSrc> rootSrc, out Dictionary<TNod<TDst>, TNod<TSrc>> map)
-	{
-		map = rootDst.Zip(rootSrc).ToDictionary(e => e.First, e => e.Second);
-		return rootDst;
-	}
 
 	private static Dictionary<TNod<Sz>, int> SolveYs(this TNod<Sz> rootSz)
 	{
@@ -164,6 +160,12 @@ public static class Algo_Layout
 				map[nod] = level;
 		}
 		return map;
+	}
+
+	private static TNod<TDst> MapBack<TSrc, TDst>(this TNod<TDst> rootDst, TNod<TSrc> rootSrc, out Dictionary<TNod<TDst>, TNod<TSrc>> map)
+	{
+		map = rootDst.Zip(rootSrc).ToDictionary(e => e.First, e => e.Second);
+		return rootDst;
 	}
 
 	private static Dictionary<L, V> MapKey<K, L, V>(this Dictionary<K, V> dict, Func<K, L> mapFun) where K : notnull where L : notnull
