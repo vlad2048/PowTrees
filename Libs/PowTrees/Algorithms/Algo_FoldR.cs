@@ -31,25 +31,58 @@ public static class Algo_FoldR
 	)
 		where T : notnull
 		=>
-			root
-				.FoldR(fun)
-				.Zip(root)
+			root.Zip(root.FoldR(fun))
 				.ToDictionary(
-					e => e.Second.V,
-					e => e.First.V
+					e => e.First.V,
+					e => e.Second.V
 				);
 
 	public static Dictionary<TNod<T>, U> FoldRDictN<T, U>(
 		this TNod<T> root,
 		Func<T, IReadOnlyList<U>, U> fun
 	)
-		where T : notnull
 		=>
-			root
-				.FoldR(fun)
-				.Zip(root)
+			root.Zip(root.FoldR(fun))
 				.ToDictionary(
-					e => e.Second,
-					e => e.First.V
+					e => e.First,
+					e => e.Second.V
 				);
+
+	public static Dictionary<TNod<T>, U> FoldRLateDictN<T, U>(
+		this TNod<T> root,
+		Func<T, U> genFun,
+		Func<U, U, U> recFun,
+		Func<IReadOnlyList<U>, U> combFun
+	)
+		=>
+			root.FoldRDictN<T, (U, U)>(
+					(n, t) => (
+						combFun(t.Select(e => recFun(e.Item1, e.Item2)).ToArray()),
+						genFun(n)
+					)
+				)
+				.MapValue(e => e.Item1);
+
+	/*public static Dictionary<TNod<T>, (U, U)> FoldRLateDictN<T, U>(
+	 
+		this TNod<T> root,
+		Func<T, U> genFun,
+		Func<U, U, U> recFun,
+		Func<IReadOnlyList<U>, U> combFun
+	)
+		=>
+			root.FoldRDictN<T, (U, U)>(
+				(n, t) => (
+					combFun(t.Select(e => recFun(e.Item1, e.Item2)).ToArray()),
+					genFun(n)
+				)
+			);*/
+
+
+	private static Dictionary<K, V> MapValue<K, U, V>(this Dictionary<K, U> dict, Func<U, V> mapFun) where K : notnull
+		=>
+			dict.ToDictionary(
+				e => e.Key,
+				e => mapFun(e.Value)
+			);
 }

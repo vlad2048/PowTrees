@@ -9,7 +9,7 @@ public static class Algo_FoldL
 	public static TNod<U> FoldL<T, U>(
 		this TNod<T> root,
 		Func<T, U?, U> fun
-	) where U : class
+	) //where U : class
 	{
 		TNod<U> Recurse(TNod<T> node, U? mayMappedParentVal)
 		{
@@ -19,7 +19,7 @@ public static class Algo_FoldL
 			return mappedNode;
 		}
 
-		return Recurse(root, null);		
+		return Recurse(root, default);		
 	}
 
 	public static Dictionary<T, U> FoldLDict<T, U>(
@@ -27,28 +27,23 @@ public static class Algo_FoldL
 		Func<T, U?, U> fun
 	)
 		where T : notnull
-		where U : class
+		//where U : class
 		=>
-			root
-				.FoldL(fun)
-				.Zip(root)
+			root.Zip(root.FoldL(fun))
 				.ToDictionary(
-					e => e.Second.V,
-					e => e.First.V
+					e => e.First.V,
+					e => e.Second.V
 				);
 
 	public static Dictionary<TNod<T>, U> FoldLDictN<T, U>(
 		this TNod<T> root,
 		Func<T, U?, U> fun
 	)
-		where T : notnull
-		where U : class
+		//where U : class
 		=>
-			root
-				.FoldL(fun)
-				.Zip(root)
+			root.Zip(root.FoldL(fun))
 				.ToDictionary(
-					e => e.Second,
-					e => e.First.V
+					e => e.First,
+					e => e.Second.V
 				);
 }

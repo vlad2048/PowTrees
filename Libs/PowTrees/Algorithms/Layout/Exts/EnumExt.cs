@@ -15,6 +15,15 @@ static class EnumExt
 		return list.ToArray();
 	}
 
+	public static int MaxOrZero(this IEnumerable<int> source)
+	{
+		var max = 0;
+		foreach (var elt in source)
+			if (elt > max)
+				max = elt;
+		return max;
+	}
+
 	public static int SumOrZero<T>(this IEnumerable<T> source, Func<T, int> fun)
 	{
 		var sum = 0;

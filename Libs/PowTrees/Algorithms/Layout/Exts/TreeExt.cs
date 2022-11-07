@@ -2,13 +2,6 @@
 
 static class TreeExt
 {
-	public static Dictionary<K, V> ToDictionaryWithLevel<T, K, V>(this TNod<T> root, Func<TNod<T>, K> keyFun, Func<TNod<T>, int, V> valFun) where K : notnull
-	{
-		var map = new Dictionary<K, V>();
-		root.ForEachWithLevel((nod, level) => map[keyFun(nod)] = valFun(nod, level));
-		return map;
-	}
-
 	public static TNod<T>[][] GetNodesByLevels<T>(this TNod<T> root)
 	{
 		var lists = new List<List<TNod<T>>>();
