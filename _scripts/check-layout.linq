@@ -24,7 +24,7 @@ static class DrawUtils
 	
 	public static void Draw(this TNod<Rec> root)
 	{
-		var layout = root.Layout(e => e.Size);
+		var layout = root.Layout(e => e.Size, e => e.AlignLevels = true);
 		var sz = layout.Values.Union().Size;
 		
 		var spans = root

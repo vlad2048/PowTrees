@@ -41,19 +41,21 @@ public static class Algo_Layout
 		);
 	}
 
-	private static Dictionary<TNod<Sz>, int> SolveXs(this TNod<Sz> rootSz, bool alignLevels)
-	{
-		var map = rootSz
+	private static Dictionary<TNod<Sz>, int> SolveXs(this TNod<Sz> rootSz, bool alignLevels) =>
+		rootSz
 			.MapN(sz => sz.V.Width)
-			.MapAlignIf(alignLevels, EnumExt.MaxOrZero);
-		var mapBack = map.Zip(rootSz).ToDictionary(e => e.First, e => e.Second);
-
-		return map
+			.MapAlignIf(alignLevels, EnumExt.MaxOrZero)
+			.MapBack(rootSz, out var mapBack)
 			.FoldLDictN<int, int>(
 				(n, w) => n + w
 			)
 			.ShiftTreeMapDown(0)
 			.MapKey(e => mapBack[e]);
+
+	private static TNod<TDst> MapBack<TSrc, TDst>(this TNod<TDst> rootDst, TNod<TSrc> rootSrc, out Dictionary<TNod<TDst>, TNod<TSrc>> map)
+	{
+		map = rootDst.Zip(rootSrc).ToDictionary(e => e.First, e => e.Second);
+		return rootDst;
 	}
 
 	private static Dictionary<TNod<Sz>, int> SolveYs(this TNod<Sz> rootSz)
