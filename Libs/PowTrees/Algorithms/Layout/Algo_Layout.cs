@@ -1,7 +1,5 @@
 ﻿using PowBasics.Geom;
 using PowTrees.Algorithms.Layout.Exts;
-using PowTrees.Algorithms.Layout.Leafifying;
-using PowTrees.Algorithms.Layout.Leafifying.Structs;
 
 // ReSharper disable once CheckNamespace
 namespace PowTrees.Algorithms;
@@ -51,42 +49,40 @@ public static class Algo_Layout
 
 	private static Dictionary<TNod<Sz>, int> SolveYs(this TNod<Sz> rootSz)
 	{
-		var ltree = rootSz.Leafify();
-		while (ltree.V is NodeMix<Sz>)
-			ltree = ltree.LeafifyFurther();
-		var topLeaf = (LeafMix<Sz>)ltree.V;
-
-		var heightMap = new Dictionary<LeafMix<Sz>, int>();
-
-		int SolveHeight(LeafMix<Sz> leaf)
-		{
-			if (heightMap.TryGetValue(leaf, out var height)) return height;
-			var childrenHeights = leaf.SubLeaves.SelectToArray(SolveHeight);
-			var parentHeight = leaf.Node.V.Height;
-			var slnHeight = Math.Max(parentHeight, childrenHeights.SumOrZero());
-			heightMap[leaf] = slnHeight;
-			return slnHeight;
-		}
-		
-		SolveHeight(topLeaf);
-
+		var heightMap = rootSz.FoldRDictN<Sz, int>(
+			(node, heights) => Math.Max(node.Height, heights.SumOrZero())
+		);
 
 		var ys = new Dictionary<TNod<Sz>, int>();
-		
-		void SolveY(LeafMix<Sz> leaf, int ofs)
+
+		int Recurse(TNod<Sz> nod, int y)
 		{
-			var parentHeight = leaf.Node.V.Height;
-			var leafHeight = heightMap[leaf];
-			var parentY = (leafHeight - parentHeight) / 2;
-			ys[leaf.Node] = parentY + ofs;
-			foreach (var subLeaf in leaf.SubLeaves)
-			{
-				SolveY(subLeaf, ofs);
-				ofs += heightMap[subLeaf];
-			}
+			// "height of nod"
+			var hn = nod.V.Height;
+
+			// "height of children"
+			var hc = nod.Children.SumOrZero(c => heightMap[c]);
+
+			// "total height" of nod and its children
+			var ht = heightMap[nod];
+
+			// Layout nod and its children within [y .. y + ht]
+			// ================================================
+			// (1) ht >= hn     if ht > hn => shift nod      to be in the center of ht
+			// (2) ht >= hc     if ht > hc => shift children to be in the center of ht
+
+			// (1)
+			ys[nod] = y + (ht - hn) / 2;	// => RESULT
+
+			// (2)
+			y += (ht - hc) / 2;
+			foreach (var c in nod.Children)
+				y += Recurse(c, y);
+
+			return ht;
 		}
-		
-		SolveY(topLeaf, 0);
+
+		Recurse(rootSz, 0);
 
 		return ys;
 	}

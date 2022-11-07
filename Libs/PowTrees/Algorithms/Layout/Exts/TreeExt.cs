@@ -27,7 +27,7 @@ static class TreeExt
 		return lists.SelectToArray(e => e.ToArray());
 	}
 
-	public static void ForEachWithLevel<T>(this TNod<T> root, Action<TNod<T>, int> action)
+	private static void ForEachWithLevel<T>(this TNod<T> root, Action<TNod<T>, int> action)
 	{
 		void Recurse(TNod<T> node, int level)
 		{

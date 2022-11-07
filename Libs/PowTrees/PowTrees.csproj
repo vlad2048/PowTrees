@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Algorithms\Layout\Leafifying\Structs\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="PowBasics.Geom" Version="0.0.1" />
   </ItemGroup>
 
