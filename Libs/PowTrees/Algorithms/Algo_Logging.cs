@@ -64,7 +64,11 @@ public static class Algo_Logging
 
 	private static string[] LogInline(this TNod<string> root)
 	{
-		var layout = root.Layout(e => new Sz(e.Length, 1), opt => opt.GutterSz = new Sz(3, 0));
+		var layout = root.Layout(e => new Sz(e.Length, 1), opt =>
+		{
+			opt.GutterSz = new Sz(3, 0);
+			opt.AlignLevels = true;
+		});
 		var treeSz = layout.Values.Union().Size;
 		var buffer = Enumerable.Range(0, treeSz.Height)
 			.SelectToArray(_ => new string(' ', treeSz.Width));
@@ -116,7 +120,7 @@ public static class Algo_Logging
 			{
 				var rp = n.V;
 				var rcs = n.Children.SelectToArray(e => e.V);
-				var xMid = (rp.Right + rcs[0].X) / 2 + 1;
+				var xMid = (rp.X + rp.Width + rcs[0].X - 1) / 2;
 				var yMid = rp.YMid();
 				var yMin = rcs.First().YMid();
 				var yMax = rcs.Last().YMid();
@@ -145,15 +149,14 @@ public static class Algo_Logging
 						//_ => throw new ArgumentException()
 						_ => "V"
 					};
-					print(new Pt(xMid, y), $"{ch}{new string(chHoriz[0], r.X - xMid)}{chArrow}");
+					print(new Pt(xMid, y), $"{ch}{new string(chHoriz[0], r.X - xMid - 2)}{chArrow}");
 				}
 			});
 	}
 
 	private static Pt OnTheRight(this R r) => new(r.X + r.Width, r.YMid());
 	private static Pt OnTheLeft(this R r) => new(r.X - 1, r.YMid());
-	//private static int YMid(this R r) => r.Y + r.Height / 2;
-	private static int YMid(this R r) => r.Y;
+	private static int YMid(this R r) => r.Y + r.Height / 2;
 
 	private static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
 	{

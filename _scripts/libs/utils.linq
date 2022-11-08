@@ -32,6 +32,7 @@ public static class Utils
 		var colIdx = 0;
 		string GetCol() { var col = Colors[colIdx]; colIdx = (colIdx + 1) % Colors.Length; return col; }
 		string GetName() => $"n_{nodIdx++}";
+		//string GetName() => new string('$', rnd.Next() % 6 + 1) + $"_{nodIdx++}";
 		int GetWidth() => rnd.Next() % 8 + 3;
 		int GetHeight() => rnd.Next() % 8 + 3;
 		int GetChildCount() => rnd.Next() % maxChildCount;
