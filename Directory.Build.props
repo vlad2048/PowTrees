@@ -1,25 +1,22 @@
 <Project>
-  <PropertyGroup>
-    <LangVersion>preview</LangVersion>
-    <EnablePreviewFeatures>True</EnablePreviewFeatures>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <DebugType>embedded</DebugType>
-    
-    <Version>0.0.4</Version>
-    
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Authors>vlad2048</Authors>
-    
-    <Description>Tree structure with algorithms</Description>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>Tree structure, Tree algorithms</PackageTags>
-    <PackageProjectUrl>https://github.com/vlad2048/PowTrees</PackageProjectUrl>
 
-  </PropertyGroup>
+	<PropertyGroup>
+		<LangVersion>preview</LangVersion>
+		<EnablePreviewFeatures>True</EnablePreviewFeatures>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<DebugType>embedded</DebugType>
+		<Version>0.0.5</Version>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Authors>vlad2048</Authors>
+		<Description>Tree structure with algorithms</Description>
+		<PackageTags>Tree structure, Tree algorithms</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/vlad2048/PowTrees</PackageProjectUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="$(SolutionDir)\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 
 </Project>
