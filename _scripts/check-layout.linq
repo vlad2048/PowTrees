@@ -1,10 +1,10 @@
 <Query Kind="Program">
-  <Reference>C:\Dev_Nuget\Libs\PowTrees\Libs\PowTrees\bin\Debug\net6.0\PowTrees.dll</Reference>
-  <Reference>C:\Dev_Nuget\Libs\PowTrees\Tests\PowTrees.Tests\bin\Debug\net6.0\PowTrees.Tests.dll</Reference>
-  <Namespace>PowTrees.Tests.Algorithms.Layout.TestSupport</Namespace>
-  <Namespace>PowTrees.Algorithms</Namespace>
-  <Namespace>PowBasics.Geom</Namespace>
+  <Reference>C:\Dev_Nuget\Libs\PowTrees\Libs\PowTrees\bin\Debug\net7.0\PowTrees.dll</Reference>
+  <Reference>C:\Dev_Nuget\Libs\PowTrees\Tests\PowTrees.Tests\bin\Debug\net7.0\PowTrees.Tests.dll</Reference>
   <Namespace>LINQPad.Controls</Namespace>
+  <Namespace>PowBasics.Geom</Namespace>
+  <Namespace>PowTrees.Algorithms</Namespace>
+  <Namespace>PowTrees.Tests.Algorithms.Layout.TestSupport</Namespace>
 </Query>
 
 #load ".\libs\utils"

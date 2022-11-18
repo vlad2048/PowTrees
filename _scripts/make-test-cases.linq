@@ -1,6 +1,6 @@
 <Query Kind="Program">
-  <Reference>C:\Dev_Nuget\Libs\PowTrees\Libs\PowTrees\bin\Debug\net6.0\PowTrees.dll</Reference>
-  <Reference>C:\Dev_Nuget\Libs\PowTrees\Tests\PowTrees.Tests\bin\Debug\net6.0\PowTrees.Tests.dll</Reference>
+  <Reference>C:\Dev_Nuget\Libs\PowTrees\Libs\PowTrees\bin\Debug\net7.0\PowTrees.dll</Reference>
+  <Reference>C:\Dev_Nuget\Libs\PowTrees\Tests\PowTrees.Tests\bin\Debug\net7.0\PowTrees.Tests.dll</Reference>
   <Namespace>LINQPad.Controls</Namespace>
   <Namespace>PowBasics.Geom</Namespace>
   <Namespace>PowBasics.Geom.Serializers</Namespace>
