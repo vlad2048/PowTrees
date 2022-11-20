@@ -1,9 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="LINQPadExtras" Version="0.0.5" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\PowTrees\PowTrees.csproj" />
