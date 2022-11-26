@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using LINQPad.Controls;
-using LINQPadExtras.Styling;
+using LINQPadExtras.Utils.Exts;
 using PowBasics.CollectionsExt;
 using PowBasics.Geom;
 using PowTrees.LINQPad.Utils;

@@ -1,5 +1,5 @@
 ﻿using LINQPad.Controls;
-using LINQPadExtras.Styling;
+using LINQPadExtras.Utils.Exts;
 using PowBasics.Geom;
 
 namespace PowTrees.LINQPad.Utils;
