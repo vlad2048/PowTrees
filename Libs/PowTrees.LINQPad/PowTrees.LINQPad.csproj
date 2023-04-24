@@ -5,7 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LINQPadExtras" Version="0.0.14" />
+		<PackageReference Include="LINQPadExtras" Version="0.0.15" />
 	</ItemGroup>
 
 	<ItemGroup>
