@@ -9,8 +9,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Algorithms\Layout\Utils\" />
-	  <Folder Include="Algorithms\Layout\Structs\" />
+		<Folder Include="Algorithms\Layout\Utils\" />
+		<Folder Include="Algorithms\Layout\Structs\" />
 	</ItemGroup>
 
 </Project>
