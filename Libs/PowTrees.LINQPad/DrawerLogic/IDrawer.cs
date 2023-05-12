@@ -16,7 +16,7 @@ public interface IDrawer
 
 static class LayoutExt
 {
-	public static Sz GetSz<T>(this TNod<T> nod, Func<T, Sz> szFun, Action<Algo_Layout.AlgoLayoutOpt>? optFun = null) =>
+	public static Sz GetSz<T>(this TNod<T> nod, Func<T, Sz> szFun, Action<AlgoLayoutOpt>? optFun = null) =>
 		nod
 			.Layout(szFun, optFun)
 			.GetRTree()

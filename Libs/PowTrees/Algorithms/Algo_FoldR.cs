@@ -25,6 +25,25 @@ public static class Algo_FoldR
 		return Recurse(root);
 	}
 
+	/*public static TNod<U> FoldR<T, U>(
+		this TNod<T> root,
+		Func<TNod<T>, IReadOnlyList<TNod<U>>, TNod<U>> fun
+	)
+	{
+		TNod<U> Recurse(TNod<T> node)
+		{
+			var foldedChildren = node.Children
+				.Select(Recurse).ToArray();
+			var foldedNode = Nod.Make(
+				fun(node, foldedChildren.Select(e => e).ToArray()),
+				foldedChildren
+			);
+			return foldedNode;
+		}
+
+		return Recurse(root);
+	}*/
+
 	public static Dictionary<T, U> FoldRDict<T, U>(
 		this TNod<T> root,
 		Func<T, IReadOnlyList<U>, U> fun

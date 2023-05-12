@@ -14,7 +14,7 @@ public static class IDrawerTreeExt
 		TNod<T> root,
 		Func<T, Sz> szFun,
 		Action<T, R> drawFun,
-		Action<Algo_Layout.AlgoLayoutOpt>? optFun = null
+		Action<AlgoLayoutOpt>? optFun = null
 	)
 	{
 		var layout = root
@@ -32,7 +32,7 @@ public static class IDrawerTreeExt
 		TNod<T> root,
 		Func<T, string> strFun,
 		Func<T, string, C> makeCtrlFun,
-		Action<Algo_Layout.AlgoLayoutOpt>? optFun = null
+		Action<AlgoLayoutOpt>? optFun = null
 	) where C : Control
 		=> gfx.Tree(
 			pt,

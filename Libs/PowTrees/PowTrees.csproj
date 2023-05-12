@@ -5,7 +5,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PowBasics.Geom" Version="0.0.6" />
+		<PackageReference Include="PowBasics.Geom" Version="0.0.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Algorithms\Layout\Utils\" />
+	  <Folder Include="Algorithms\Layout\Structs\" />
 	</ItemGroup>
 
 </Project>

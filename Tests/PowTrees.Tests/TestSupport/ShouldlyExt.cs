@@ -20,6 +20,12 @@ static class ShouldlyExt
 		}
 	}
 
+	public static TNod<T> ShowInput<T>(this TNod<T> root)
+	{
+		root.Log("Input");
+		return root;
+	}
+
 	public static void CheckTree<T>(this TNod<T> actRoot, TNod<T> expRoot)
 	{
 		actRoot.Log("Actual");

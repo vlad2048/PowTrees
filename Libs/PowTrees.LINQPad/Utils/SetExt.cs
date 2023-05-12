@@ -16,6 +16,17 @@ static class SetExt
 		.Set("line-height", $"{r.Height.v()}")
 		.Set("text-align", "center");
 
+
+	internal static C SetRPlusHalf<C>(this C ctrl, R r) where C : Control => ctrl
+		.Set("position", "absolute")
+		.Set("display", "block")
+		.Set("left", $"{r.X.hHalf()}")
+		.Set("top", $"{r.Y.vHalf()}")
+		.Set("width", $"{r.Width.h()}")
+		.Set("height", $"{r.Height.v()}")
+		.Set("line-height", $"{r.Height.v()}")
+		.Set("text-align", "center");
+
 	public static Control SetWithAction(this Control ctrl, Action<Control>? optAction)
 	{
 		optAction?.Invoke(ctrl);

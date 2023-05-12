@@ -1,5 +1,4 @@
 <Query Kind="Program">
-  <NuGetReference>PowBasics.Geom</NuGetReference>
   <NuGetReference>PowTrees.LINQPad</NuGetReference>
   <Namespace>LINQPad.Controls</Namespace>
   <Namespace>PowBasics.Geom</Namespace>

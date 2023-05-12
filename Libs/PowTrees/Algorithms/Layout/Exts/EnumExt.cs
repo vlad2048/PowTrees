@@ -3,6 +3,7 @@
 static class EnumExt
 {
 	public static U[] SelectToArray<T, U>(this IEnumerable<T> source, Func<T, U> mapFun) => source.Select(mapFun).ToArray();
+	public static U[] SelectToArray<T, U>(this IEnumerable<T> source, Func<T, int, U> mapFun) => source.Select(mapFun).ToArray();
 
 	public static U[] FoldL<T, U>(this IEnumerable<T> source, U seed, Func<T, U, U> fun)
 	{

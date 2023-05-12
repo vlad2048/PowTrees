@@ -28,6 +28,22 @@ public static class Algo_Filter
 		return root.Filter((_, lvl) => lvl <= maxDepth).Single();
 	}
 
+	public static TNod<T>? FilterBranches<T>(this TNod<T> root, Func<T, bool> predicate)
+	{
+		bool Keep(TNod<T> node) => node.Any(e => predicate(e.V));
+
+		if (!Keep(root)) return null;
+
+		TNod<T> Rec(TNod<T> node) => Nod.Make(
+			node.V,
+			node.Children
+				.Where(Keep)
+				.Select(Rec)
+		);
+
+		return Rec(root);
+	}
+
 	public static TNod<T>[] Filter<T>(this TNod<T> root, Func<T, bool> predicate, Action<TreeFilterOpt>? optFun = null) => root.Filter((n, _) => predicate(n), optFun);
 	public static TNod<T>[] Filter<T>(this TNod<T> root, Func<T, int, bool> predicate, Action<TreeFilterOpt>? optFun = null) => root.FilterN((n, lvl) => predicate(n.V, lvl), optFun);
 	public static TNod<T>[] FilterN<T>(this TNod<T> root, Func<TNod<T>, bool> predicate, Action<TreeFilterOpt>? optFun = null) => root.FilterN((n, _) => predicate(n), optFun);

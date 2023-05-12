@@ -4,22 +4,29 @@ using PowTrees.Algorithms.Layout.Exts;
 // ReSharper disable once CheckNamespace
 namespace PowTrees.Algorithms;
 
+
 public static class Algo_Layout
 {
-	public class AlgoLayoutOpt
+	public static GraphLayout<T> BuildLayout<T>(
+		this TNod<T> root,
+		Func<T, Sz> szFun,
+		Action<AlgoLayoutOpt>? optFun = null
+	)
 	{
-		public Sz GutterSz { get; set; } = new(3, 1);
-		public bool AlignLevels { get; set; } = true;
-
-		internal static AlgoLayoutOpt Make(Action<AlgoLayoutOpt>? optFun)
-		{
-			var opt = new AlgoLayoutOpt();
-			optFun?.Invoke(opt);
-			return opt;
-		}
+		var dupRoot = root.Dup();
+		return new GraphLayout<T>(
+			dupRoot
+				.Layout(e => szFun(e.Orig), optFun)
+				.ZipMapWithTree(dupRoot, (dupNode, r) => new LayoutNode<T>(dupNode.Orig, r))
+		);
 	}
 
-	public static Dictionary<TNod<T>, R> Layout<T>(this TNod<T> root, Func<T, Sz> szFun, Action<AlgoLayoutOpt>? optFun = null)
+
+	public static Dictionary<TNod<T>, R> Layout<T>(
+		this TNod<T> root,
+		Func<T, Sz> szFun,
+		Action<AlgoLayoutOpt>? optFun = null
+	)
 	{
 		var opt = AlgoLayoutOpt.Make(optFun);
 

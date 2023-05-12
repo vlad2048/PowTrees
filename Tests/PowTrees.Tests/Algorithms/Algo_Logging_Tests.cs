@@ -39,8 +39,8 @@ class Algo_Logging_Tests
 			);
 
 		t.LogToStrings(opt => opt.Type = TreeLogType.Inline).CheckLines(@"
-3─┬►5     
-  └►7─┬►9 
+  ┌►5     
+3─┴►7─┬►9 
       └►11
 ");
 	}
