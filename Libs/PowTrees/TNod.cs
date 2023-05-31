@@ -11,7 +11,7 @@ public class TNod<T> : IEnumerable<TNod<T>>
 {
 	private readonly List<TNod<T>> children = new();
 
-	public T V { get; }
+	public T V { get; private set; }
 	public TNod<T>? Parent { get; private set; }
 	public IReadOnlyList<TNod<T>> Children => children;
 
@@ -38,6 +38,8 @@ public class TNod<T> : IEnumerable<TNod<T>>
 			return ex.Message;
 		}
 	}
+
+	public void ChangeContent(T v) => V = v;
 
 	public void AddChild(TNod<T> child)
 	{
