@@ -4,6 +4,7 @@
 public static class Nod
 {
 	public static TNod<T> Make<T>(T v, IEnumerable<TNod<T>>? children = null) => new(v, children);
+	public static TNod<T> Make<T>(T v, params TNod<T>[] children) => new(v, children);
 }
 
 

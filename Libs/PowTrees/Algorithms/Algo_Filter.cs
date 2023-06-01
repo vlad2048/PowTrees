@@ -105,7 +105,7 @@ public static class Algo_Filter
 			return filteredChildren;
 		}
 
-		TNod<T> BuildRecurse(TNod<T> node, int lvl) => new(node.V, FindMatchingChildren(node, false, lvl));
+		TNod<T> BuildRecurse(TNod<T> node, int lvl) => Nod.Make(node.V, FindMatchingChildren(node, false, lvl));
 
 		var outputNodes = FindMatchingChildren(root, true, 0).Select(BuildRecurse).ToArray();
 
