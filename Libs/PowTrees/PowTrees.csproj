@@ -11,6 +11,7 @@
 	<ItemGroup>
 		<Folder Include="Algorithms\Layout\Utils\" />
 		<Folder Include="Algorithms\Layout\Structs\" />
+		<Folder Include="Utils\" />
 	</ItemGroup>
 
 </Project>
