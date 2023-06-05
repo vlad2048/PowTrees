@@ -2,11 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0-windows</TargetFramework>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LINQPadExtras" Version="0.0.17" />
+		<PackageReference Include="LINQPadExtras" Version="0.0.18" />
 	</ItemGroup>
 
 	<ItemGroup>
