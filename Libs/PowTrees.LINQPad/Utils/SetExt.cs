@@ -1,11 +1,16 @@
 ﻿using LINQPad.Controls;
-using LINQPadExtras.Utils.Exts;
 using PowBasics.Geom;
 
 namespace PowTrees.LINQPad.Utils;
 
 static class SetExt
 {
+	public static C Set<C>(this C ctrl, string key, string val) where C : Control
+	{
+		ctrl.Styles[key] = val;
+		return ctrl;
+	}
+
 	public static C SetR<C>(this C ctrl, R r) where C : Control => ctrl
 		.Set("position", "absolute")
 		.Set("display", "block")

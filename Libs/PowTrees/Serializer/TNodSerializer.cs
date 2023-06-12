@@ -3,9 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace PowTrees.Serializer;
 
-public class TNodSerializer<T> : JsonConverter<TNod<T>>
+public sealed class TNodSerializer<T> : JsonConverter<TNod<T>>
 {
-	private class JsonNod
+	private sealed class JsonNod
 	{
 		public T V { get; }
 		public IReadOnlyList<JsonNod> Children { get; }

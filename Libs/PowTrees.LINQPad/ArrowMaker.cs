@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using LINQPad.Controls;
-using PowBasics.CollectionsExt;
 using PowBasics.Geom;
 using PowTrees.Algorithms;
 using PowTrees.LINQPad.DrawerLogic;

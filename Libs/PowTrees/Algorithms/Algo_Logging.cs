@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using PowBasics.Geom;
+﻿using PowBasics.Geom;
 using PowTrees.Algorithms.Layout.Exts;
 
 namespace PowTrees.Algorithms;
@@ -10,7 +9,7 @@ public enum TreeLogType
 	Traversal
 }
 
-public class TreeLogOpt<T>
+public sealed class TreeLogOpt<T>
 {
 	public TreeLogType Type { get; set; } = TreeLogType.Inline;
 	public Func<T, string>? FormatFun { get; set; }
@@ -155,7 +154,7 @@ public static class Algo_Logging
 	}
 
 	private static Pt OnTheRight(this R r) => new(r.X + r.Width, r.YMid());
-	private static Pt OnTheLeft(this R r) => new(r.X - 1, r.YMid());
+	//private static Pt OnTheLeft(this R r) => new(r.X - 1, r.YMid());
 	private static int YMid(this R r) => r.Y + r.Height / 2;
 
 	private static void ForEach<T>(this IEnumerable<T> source, Action<T> action)

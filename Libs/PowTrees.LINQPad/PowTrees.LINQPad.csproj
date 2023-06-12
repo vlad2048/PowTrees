@@ -6,10 +6,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LINQPadExtras" Version="0.0.19" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\PowTrees\PowTrees.csproj" />
 	</ItemGroup>
 

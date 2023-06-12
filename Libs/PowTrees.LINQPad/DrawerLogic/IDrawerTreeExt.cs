@@ -1,6 +1,5 @@
 ﻿using PowBasics.Geom;
 using PowTrees.Algorithms;
-using System;
 using LINQPad.Controls;
 using PowTrees.LINQPad.Utils;
 

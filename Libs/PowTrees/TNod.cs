@@ -8,7 +8,7 @@ public static class Nod
 }
 
 
-public class TNod<T> : IEnumerable<TNod<T>>
+public sealed class TNod<T> : IEnumerable<TNod<T>>
 {
 	private readonly List<TNod<T>> children = new();
 

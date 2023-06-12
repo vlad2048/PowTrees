@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using PowTrees.Algorithms.Layout.Exts;
-
-namespace PowTrees.Algorithms;
+﻿namespace PowTrees.Algorithms;
 
 public static class Algo_RemoveTransitiveDependencies
 {
@@ -15,7 +12,7 @@ public static class Algo_RemoveTransitiveDependencies
 		{
 			var listTodo = new Queue<TNod<T>>(n.Children);
 			var listDone = new List<TNod<T>>();
-			var listRejected = new List<TNod<T>>();
+			//var listRejected = new List<TNod<T>>();
 			var parents = n.GetParents(cmp);
 
 			while (listTodo.TryDequeue(out var child))
@@ -26,7 +23,7 @@ public static class Algo_RemoveTransitiveDependencies
 					IsInDescendents(listDone, child);
 				if (isSomewhereElse)
 				{
-					listRejected.Add(child);
+					//listRejected.Add(child);
 				}
 				else
 				{

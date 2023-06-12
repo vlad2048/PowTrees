@@ -1,5 +1,4 @@
 ﻿using LINQPad.Controls;
-using LINQPadExtras.Utils.Exts;
 using PowTrees.LINQPad.DrawerLogic;
 using PowTrees.LINQPad.Utils;
 

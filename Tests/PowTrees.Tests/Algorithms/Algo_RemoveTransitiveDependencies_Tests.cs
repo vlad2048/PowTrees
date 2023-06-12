@@ -1,6 +1,5 @@
 ﻿using PowTrees.Algorithms;
 using PowTrees.Tests.TestSupport;
-using Shouldly;
 
 namespace PowTrees.Tests.Algorithms;
 

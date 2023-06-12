@@ -1,13 +1,11 @@
 ﻿using System.Text;
 using LINQPad.Controls;
-using LINQPadExtras.Utils.Exts;
-using PowBasics.CollectionsExt;
 using PowBasics.Geom;
 using PowTrees.LINQPad.Utils;
 
 namespace PowTrees.LINQPad.DrawerLogic;
 
-class Drawer : IDrawer
+sealed class Drawer : IDrawer
 {
 	private static readonly string TreeArrowLineStroke = "#145d99";
 	private static readonly string TreeArrowLineStrokeWidth = "1px";

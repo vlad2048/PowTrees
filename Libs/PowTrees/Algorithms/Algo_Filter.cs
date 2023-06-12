@@ -6,7 +6,7 @@ public enum TreeFilterType
 	KeepIfAllParentsMatchingToo,
 }
 
-public class TreeFilterOpt
+public sealed class TreeFilterOpt
 {
 	public TreeFilterType Type { get; set; } = TreeFilterType.KeepIfMatchingOnly;
 	public bool AlwaysKeepRoot { get; set; } = false;

@@ -5,7 +5,7 @@ using PowTrees.Algorithms.Layout.Exts;
 // ReSharper disable once CheckNamespace
 namespace PowTrees.Algorithms;
 
-public class GraphLayout<T>
+public sealed class GraphLayout<T>
 {
 	public TNod<LayoutNode<T>> Root { get; }
 	public R BBox { get; }

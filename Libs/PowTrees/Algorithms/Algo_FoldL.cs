@@ -9,7 +9,7 @@ public static class Algo_FoldL
 	public static TNod<U> FoldL<T, U>(
 		this TNod<T> root,
 		Func<T, U?, U> fun
-	) //where U : class
+	)
 	{
 		TNod<U> Recurse(TNod<T> node, U? mayMappedParentVal)
 		{
@@ -27,7 +27,6 @@ public static class Algo_FoldL
 		Func<T, U?, U> fun
 	)
 		where T : notnull
-		//where U : class
 		=>
 			root.Zip(root.FoldL(fun))
 				.ToDictionary(
@@ -39,7 +38,6 @@ public static class Algo_FoldL
 		this TNod<T> root,
 		Func<T, U?, U> fun
 	)
-		//where U : class
 		=>
 			root.Zip(root.FoldL(fun))
 				.ToDictionary(
