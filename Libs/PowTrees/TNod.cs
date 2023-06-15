@@ -27,6 +27,14 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 			}
 	}
 
+	public TNod<T> CloneWithNewContent(T v) => new(v, children, Parent);
+	private TNod(T v, List<TNod<T>> children, TNod<T>? parent)
+	{
+		V = v;
+		this.children = children;
+		Parent = parent;
+	}
+
 	public override string ToString()
 	{
 		try
@@ -41,6 +49,7 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 	}
 
 	public void ChangeContent(T v) => V = v;
+
 
 	public void AddChild(TNod<T> child)
 	{
