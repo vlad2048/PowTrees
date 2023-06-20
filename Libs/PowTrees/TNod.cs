@@ -69,6 +69,19 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 		childNext.Parent = this;
 	}
 
+	public void ClearChildren()
+	{
+		foreach (var child in Children)
+			child.Parent = null;
+		children.Clear();
+	}
+
+	public void AddChildren(IEnumerable<TNod<T>> kids)
+	{
+		foreach (var kid in kids)
+			AddChild(kid);
+	}
+
 	public IEnumerator<TNod<T>> GetEnumerator() => Enumerate();
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
