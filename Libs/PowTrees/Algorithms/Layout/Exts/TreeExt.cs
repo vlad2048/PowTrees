@@ -1,4 +1,6 @@
-﻿namespace PowTrees.Algorithms.Layout.Exts;
+﻿using PowBasics.CollectionsExt;
+
+namespace PowTrees.Algorithms.Layout.Exts;
 
 static class TreeExt
 {

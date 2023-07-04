@@ -1,4 +1,5 @@
-﻿using PowBasics.Geom;
+﻿using PowBasics.CollectionsExt;
+using PowBasics.Geom;
 using PowTrees.Algorithms.Layout.Exts;
 
 // ReSharper disable once CheckNamespace

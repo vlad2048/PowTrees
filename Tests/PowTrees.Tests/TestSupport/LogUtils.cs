@@ -35,7 +35,7 @@ static class LogUtils
 
 	private static void LogTree<T>(this TNod<T> root)
 	{
-		root.LogToStrings().LogArr();
+		root.Log().LogArr();
 	}
 
 	private static void LogArr(this string[] arr)
