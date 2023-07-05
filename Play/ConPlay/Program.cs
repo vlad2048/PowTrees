@@ -1,4 +1,7 @@
 ﻿using System.Drawing;
+using PowBasics.ColorCode;
+using PowBasics.ColorCode.Structs;
+using PowBasics.ColorCode.Utils;
 using PowTrees.Algorithms;
 
 namespace ConPlay;

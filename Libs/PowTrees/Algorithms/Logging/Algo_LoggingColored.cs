@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using PowBasics.Algorithms;
 using PowBasics.CollectionsExt;
+using PowBasics.ColorCode;
+using PowBasics.ColorCode.Structs;
 using PowBasics.Geom;
 
 // ReSharper disable once CheckNamespace
@@ -28,7 +30,7 @@ public static class Algo_LoggingColored
 		var opt = TreeLogColoredOpt.Make(optFun);
 
 		var layout = root.Layout(
-			e => txtMap[e].GetSize(),
+			e => txtMap[e].GetSize().ToSz(),
 			layoutOpt =>
 			{
 				layoutOpt.GutterSz = opt.GutterSz;
@@ -71,7 +73,7 @@ public static class Algo_LoggingColored
 
 		public void Print(Pt pos, Txt txt)
 		{
-			var txtSize = txt.GetSize();
+			var txtSize = txt.GetSize().ToSz();
 			var txtR = new R(pos, txtSize);
 			var unionR = new[] { r, txtR }.Union();
 			if (unionR != r) throw new ArgumentException("Trying to write outside of the bounds");
@@ -116,4 +118,11 @@ public static class Algo_LoggingColored
 			return writer.Txt;
 		}
 	}
+}
+
+
+
+file static class Algo_LoggingColored_Ext
+{
+	public static Sz ToSz(this (int, int) t) => new(t.Item1, t.Item2);
 }
