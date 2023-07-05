@@ -1,6 +1,4 @@
-﻿using PowTrees.Algorithms;
-
-namespace PowTrees.Tests.TestSupport;
+﻿namespace PowTrees.Tests.TestSupport;
 
 static class LogUtils
 {
@@ -35,7 +33,7 @@ static class LogUtils
 
 	private static void LogTree<T>(this TNod<T> root)
 	{
-		root.Log().LogArr();
+		root.Log("");
 	}
 
 	private static void LogArr(this string[] arr)
