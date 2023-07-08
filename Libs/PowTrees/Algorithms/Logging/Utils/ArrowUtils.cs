@@ -75,8 +75,12 @@ static class ArrowUtils
 
     private static TNod<R> GetRTree<T>(this Dictionary<TNod<T>, R> layout) =>
 	    layout
-		    .Keys.Single(e => e.Parent == null)
+		    .GetHighestNode()
 		    .MapN(e => layout[e]);
+
+    private static TNod<T> GetHighestNode<T>(this Dictionary<TNod<T>, R> layout) =>
+	    layout.Keys
+		    .Single(e => e.Parent == null || !layout.ContainsKey(e.Parent));
 
     private static Pt OnTheRight(this R r) => new(r.Right, r.YMid());
 

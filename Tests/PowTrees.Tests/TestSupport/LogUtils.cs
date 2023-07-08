@@ -1,4 +1,6 @@
-﻿namespace PowTrees.Tests.TestSupport;
+﻿using PowTrees.Algorithms;
+
+namespace PowTrees.Tests.TestSupport;
 
 static class LogUtils
 {
@@ -10,10 +12,10 @@ static class LogUtils
 		Log("");
 	}
 
-	public static void Log<T>(this TNod<T> root, string title)
+	public static void LogTree<T>(this TNod<T> root, string title)
 	{
 		LogTitle(title);
-		root.LogTree();
+		root.Log();
 		Log("");
 	}
 
@@ -28,12 +30,7 @@ static class LogUtils
 	private static void LogTrees<T>(this IEnumerable<TNod<T>> roots)
 	{
 		foreach (var root in roots)
-			root.LogTree();
-	}
-
-	private static void LogTree<T>(this TNod<T> root)
-	{
-		root.Log("");
+			root.Log();
 	}
 
 	private static void LogArr(this string[] arr)
