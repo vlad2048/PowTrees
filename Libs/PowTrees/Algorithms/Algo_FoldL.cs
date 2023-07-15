@@ -8,40 +8,24 @@ public static class Algo_FoldL
 	/// </summary>
 	public static TNod<U> FoldL<T, U>(
 		this TNod<T> root,
-		Func<T, U?, U> fun
+		Func<TNod<T>, U, U> fun,
+		U seed
 	)
 	{
-		TNod<U> Recurse(TNod<T> node, U? mayMappedParentVal)
+		TNod<U> Recurse(TNod<T> node, U mayMappedParentVal)
 		{
-			var mappedNodeVal = fun(node.V, mayMappedParentVal);
+			var mappedNodeVal = fun(node, mayMappedParentVal);
 			var mappedChildren = node.Children.Select(child => Recurse(child, mappedNodeVal));
 			var mappedNode = Nod.Make(mappedNodeVal, mappedChildren);
 			return mappedNode;
 		}
 
-		return Recurse(root, default);		
+		return Recurse(root, seed);
 	}
-
-	public static Dictionary<T, U> FoldLDict<T, U>(
-		this TNod<T> root,
-		Func<T, U?, U> fun
-	)
-		where T : notnull
-		=>
-			root.Zip(root.FoldL(fun))
-				.ToDictionary(
-					e => e.First.V,
-					e => e.Second.V
-				);
-
-	public static Dictionary<TNod<T>, U> FoldLDictN<T, U>(
-		this TNod<T> root,
-		Func<T, U?, U> fun
-	)
-		=>
-			root.Zip(root.FoldL(fun))
-				.ToDictionary(
-					e => e.First,
-					e => e.Second.V
-				);
+	
+	public static U ParentOr<T, U>(this TNod<T> nod, Func<T, U> fun, U seed) => nod.Parent switch
+	{
+		not null => fun(nod.Parent.V),
+		null => seed
+	};
 }
