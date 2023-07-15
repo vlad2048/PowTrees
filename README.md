@@ -3,7 +3,7 @@
 ## Table of content
 
 - [Introduction](#introduction)
-- [Usafe](#usage)
+- [Usage](#usage)
 - [License](#license)
 
 
@@ -17,6 +17,15 @@ Tree structure with algorithms
 
 ### FoldL
 Map a tree recursively. For each node, we use the node and the mapped parent as input
+
+Signature:
+```c#
+static TNod<U> FoldL<T, U>(
+	this TNod<T> root,
+	Func<TNod<T>, U, U> fun,
+	U seed
+);
+```
 
 Example:
 ```c#
@@ -55,6 +64,30 @@ root.Zip(root.FoldL(fun))
 		e => e.Second.V
 	);
 ```
+
+As these cases are quite common, there are some utility functions to implement them easily:
+```c#
+static TNod<U> FoldL_Parent<T, U>(
+	this TNod<T> root,
+	Func<T, U> get,
+	Func<U, U, U> fun,
+	U seed
+);
+
+static IReadOnlyDictionary<T, U> FoldL_Dict<T, U>(
+	this TNod<T> root,
+	Func<T, U, U> fun,
+	U seed
+) where T : notnull;
+
+static IReadOnlyDictionary<T, U> FoldL_Parent_Dict<T, U>(
+	this TNod<T> root,
+	Func<T, U> get,
+	Func<U, U, U> fun,
+	U seed
+) where T : notnull;
+```
+
 
 ### Build a node lookup map
 If you transform a tree (A) into tree (B) without changing its shape (just changing the node content, not children).

@@ -22,6 +22,51 @@ public static class Algo_FoldL
 
 		return Recurse(root, seed);
 	}
+
+
+	public static TNod<U> FoldL_Parent<T, U>(
+		this TNod<T> root,
+		Func<T, U> get,
+		Func<U, U, U> fun,
+		U seed
+	) =>
+		root.FoldL(
+			(nod, acc) =>
+				fun(
+					nod.ParentOr(get, seed),
+					acc
+				),
+			seed
+		);
+
+
+	public static IReadOnlyDictionary<T, U> FoldL_Dict<T, U>(
+		this TNod<T> root,
+		Func<T, U, U> fun,
+		U seed
+	) where T : notnull
+		=>
+		root.Zip(root.FoldL((nod, acc) => fun(nod.V, acc), seed)).ToDictionary(e => e.First.V, e => e.Second.V);
+
+
+	public static IReadOnlyDictionary<T, U> FoldL_Parent_Dict<T, U>(
+		this TNod<T> root,
+		Func<T, U> get,
+		Func<U, U, U> fun,
+		U seed
+	) where T : notnull
+		=>
+		root.Zip(
+			root.FoldL(
+				(nod, acc) =>
+					fun(
+						nod.ParentOr(get, seed),
+						acc
+					),
+				seed
+			)
+		).ToDictionary(e => e.First.V, e => e.Second.V);
+
 	
 	public static U ParentOr<T, U>(this TNod<T> nod, Func<T, U> fun, U seed) => nod.Parent switch
 	{
