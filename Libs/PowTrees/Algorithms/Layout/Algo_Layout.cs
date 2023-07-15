@@ -62,6 +62,8 @@ public static class Algo_Layout
 			.MapKey(e => mapBack[e]);
 
 
+
+
 	private static Dictionary<TNod<Sz>, int> SolveYs(this TNod<Sz> rootSz)
 	{
 		var hcMap = rootSz.FoldRDictN<Sz, int>(
@@ -182,5 +184,34 @@ public static class Algo_Layout
 		foreach (var (k, v) in dict)
 			dictRes[mapFun(k)] = v;
 		return dictRes;
+	}
+
+
+
+	private static Dictionary<TNod<T>, U> FoldLDictN<T, U>(
+		this TNod<T> root,
+		Func<T, U?, U> fun
+	)
+		=>
+			root.Zip(root.FoldL(fun))
+				.ToDictionary(
+					e => e.First,
+					e => e.Second.V
+				);
+
+	private static TNod<U> FoldL<T, U>(
+		this TNod<T> root,
+		Func<T, U?, U> fun
+	)
+	{
+		TNod<U> Recurse(TNod<T> node, U? mayMappedParentVal)
+		{
+			var mappedNodeVal = fun(node.V, mayMappedParentVal);
+			var mappedChildren = node.Children.Select(child => Recurse(child, mappedNodeVal));
+			var mappedNode = Nod.Make(mappedNodeVal, mappedChildren);
+			return mappedNode;
+		}
+
+		return Recurse(root, default);		
 	}
 }
