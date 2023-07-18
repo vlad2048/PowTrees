@@ -45,7 +45,7 @@ public static class Algo_LoggingColored
 			buffer.Print(r.Pos, txt);
 		}
 
-		ArrowUtils.DrawArrows(layout, (pos, str) => buffer.Print(pos, Txt.FromChunk(str, opt.ArrowColor)));
+		ArrowUtils.DrawArrows(root, layout, (pos, str) => buffer.Print(pos, Txt.FromChunk(str, opt.ArrowColor)));
 
 		return buffer.GetTxt();
 	}

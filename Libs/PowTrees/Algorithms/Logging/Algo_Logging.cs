@@ -36,7 +36,7 @@ public static class Algo_Logging
         foreach (var (n, r) in layout)
             Print(r, opt.FmtFun(n.V));
 
-		ArrowUtils.DrawArrows(layout, (pos, str) => Print(new R(pos, new Sz(str.Length, 1)), str));
+		ArrowUtils.DrawArrows(root, layout, (pos, str) => Print(new R(pos, new Sz(str.Length, 1)), str));
 
         return buffer;
     }
