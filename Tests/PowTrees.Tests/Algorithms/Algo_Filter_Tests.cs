@@ -166,31 +166,31 @@ class Algo_Filter_Tests
 
 
 	[Test]
-	public void _10_KeepIfAllParentsMatchingToo_Empty()
+	public void _10_KeepIfAllDadsMatchingToo_Empty()
 	{
 		var t =
 			N(3,
 				N(5),
 				N(7)
 			).ShowInput();
-		t.Filter(e => e < 0, opt => opt.Type = TreeFilterType.KeepIfAllParentsMatchingToo).CheckTrees(A<TNod<int>>(
+		t.Filter(e => e < 0, opt => opt.Type = TreeFilterType.KeepIfAllDadsMatchingToo).CheckTrees(A<TNod<int>>(
 		));
 	}
 	
 	[Test]
-	public void _11_KeepIfAllParentsMatchingToo_OnlyChildMatching()
+	public void _11_KeepIfAllDadsMatchingToo_OnlyKidMatching()
 	{
 		var t =
 			N(3,
 				N(5),
 				N(7)
 			).ShowInput();
-		t.Filter(e => e == 5, opt => opt.Type = TreeFilterType.KeepIfAllParentsMatchingToo).CheckTrees(A<TNod<int>>(
+		t.Filter(e => e == 5, opt => opt.Type = TreeFilterType.KeepIfAllDadsMatchingToo).CheckTrees(A<TNod<int>>(
 		));
 	}
 	
 	[Test]
-	public void _11_KeepIfAllParentsMatchingToo_AllParentsMatching()
+	public void _11_KeepIfAllDadsMatchingToo_AllDadsMatching()
 	{
 		var t =
 			N(3,
@@ -201,7 +201,7 @@ class Algo_Filter_Tests
 				),
 				N(7)
 			).ShowInput();
-		t.Filter(e => e <= 5, opt => opt.Type = TreeFilterType.KeepIfAllParentsMatchingToo).CheckTrees(A(
+		t.Filter(e => e <= 5, opt => opt.Type = TreeFilterType.KeepIfAllDadsMatchingToo).CheckTrees(A(
 			N(3,
 				N(5)
 			)
@@ -209,20 +209,20 @@ class Algo_Filter_Tests
 	}
 	
 	[Test]
-	public void _12_KeepIfAllParentsMatchingToo_WithLevel()
+	public void _12_KeepIfAllDadsMatchingToo_WithLevel()
 	{
-		tree.ShowInput().Filter((_, lvl) => lvl <= 0, opt => opt.Type = TreeFilterType.KeepIfAllParentsMatchingToo).CheckTrees(A(
+		tree.ShowInput().Filter((_, lvl) => lvl <= 0, opt => opt.Type = TreeFilterType.KeepIfAllDadsMatchingToo).CheckTrees(A(
 			N(3)
 		));
 
-		tree.ShowInput().Filter((_, lvl) => lvl <= 1, opt => opt.Type = TreeFilterType.KeepIfAllParentsMatchingToo).CheckTrees(A(
+		tree.ShowInput().Filter((_, lvl) => lvl <= 1, opt => opt.Type = TreeFilterType.KeepIfAllDadsMatchingToo).CheckTrees(A(
 			N(3,
 				N(5),
 				N(7)
 			)
 		));
 
-		tree.ShowInput().Filter((_, lvl) => lvl <= 2, opt => opt.Type = TreeFilterType.KeepIfAllParentsMatchingToo).CheckTrees(A(
+		tree.ShowInput().Filter((_, lvl) => lvl <= 2, opt => opt.Type = TreeFilterType.KeepIfAllDadsMatchingToo).CheckTrees(A(
 			N(3,
 				N(5),
 				N(7,
@@ -232,7 +232,7 @@ class Algo_Filter_Tests
 			)
 		));
 
-		tree.ShowInput().Filter((_, lvl) => lvl <= 3, opt => opt.Type = TreeFilterType.KeepIfAllParentsMatchingToo).CheckTrees(A(
+		tree.ShowInput().Filter((_, lvl) => lvl <= 3, opt => opt.Type = TreeFilterType.KeepIfAllDadsMatchingToo).CheckTrees(A(
 			N(3,
 				N(5),
 				N(7,
@@ -245,7 +245,7 @@ class Algo_Filter_Tests
 			)
 		));
 
-		tree.ShowInput().Filter((_, lvl) => lvl <= 4, opt => opt.Type = TreeFilterType.KeepIfAllParentsMatchingToo).CheckTrees(A(
+		tree.ShowInput().Filter((_, lvl) => lvl <= 4, opt => opt.Type = TreeFilterType.KeepIfAllDadsMatchingToo).CheckTrees(A(
 			N(3,
 				N(5),
 				N(7,

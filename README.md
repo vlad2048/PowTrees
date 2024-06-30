@@ -27,7 +27,7 @@ var rootOut = JsonSerializer.Deserialize<TNod<T>>(str, jsonOpt)!;
 ```
 
 ### FoldL
-Map a tree recursively. For each node, we use the node and the mapped parent as input
+Map a tree recursively. For each node, we use the node and the mapped dad as input
 
 Signature:
 ```c#
@@ -60,7 +60,7 @@ root.FoldL((nod, acc) => acc + nod.V.Ofs, 0)
 
 // 2. Apply Ofs on the node descendents only:
 // ------------------------------------------
-root.FoldL((nod, acc) => acc + nod.ParentOr(e => e.Ofs, 0), 0)
+root.FoldL((nod, acc) => acc + nod.DadOr(e => e.Ofs, 0), 0)
       ┌►3   
       │     
 0──►0─┤   ┌►9
@@ -78,7 +78,7 @@ root.Zip(root.FoldL(fun))
 
 As these cases are quite common, there are some utility functions to implement them easily:
 ```c#
-static TNod<U> FoldL_Parent<T, U>(
+static TNod<U> FoldL_Dad<T, U>(
 	this TNod<T> root,
 	Func<T, U> get,
 	Func<U, U, U> fun,
@@ -91,7 +91,7 @@ static IReadOnlyDictionary<T, U> FoldL_Dict<T, U>(
 	U seed
 ) where T : notnull;
 
-static IReadOnlyDictionary<T, U> FoldL_Parent_Dict<T, U>(
+static IReadOnlyDictionary<T, U> FoldL_Dad_Dict<T, U>(
 	this TNod<T> root,
 	Func<T, U> get,
 	Func<U, U, U> fun,
@@ -101,7 +101,7 @@ static IReadOnlyDictionary<T, U> FoldL_Parent_Dict<T, U>(
 
 
 ### Build a node lookup map
-If you transform a tree (A) into tree (B) without changing its shape (just changing the node content, not children).
+If you transform a tree (A) into tree (B) without changing its shape (just changing the node content, not kidren).
 Very often, you then need to map the nodes of B back to A.
 For this use:
 ```c#

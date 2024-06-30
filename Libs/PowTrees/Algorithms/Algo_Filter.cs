@@ -3,7 +3,7 @@
 public enum TreeFilterType
 {
 	KeepIfMatchingOnly,
-	KeepIfAllParentsMatchingToo,
+	KeepIfAllDadsMatchingToo,
 }
 
 public sealed class TreeFilterOpt
@@ -55,13 +55,13 @@ public static class Algo_Filter
 		return opt.Type switch
 		{
 			TreeFilterType.KeepIfMatchingOnly => root.Filter_KeepIfMatchingOnly(Predicate),
-			TreeFilterType.KeepIfAllParentsMatchingToo => root.Filter_KeepIfAllParentsMatchingToo(Predicate),
+			TreeFilterType.KeepIfAllDadsMatchingToo => root.Filter_KeepIfAllDadsMatchingToo(Predicate),
 			_ => throw new ArgumentException()
 		};
 	}
 
 
-	private static TNod<T>[] Filter_KeepIfAllParentsMatchingToo<T>(
+	private static TNod<T>[] Filter_KeepIfAllDadsMatchingToo<T>(
 		this TNod<T> root,
 		Func<TNod<T>, int, bool> predicate
 	)
@@ -69,8 +69,8 @@ public static class Algo_Filter
 		TNod<T>[] Recurse(TNod<T> node, int lvl)
 		{
 			if (!predicate(node, lvl)) return Array.Empty<TNod<T>>();
-			var children = node.Kids.Select(e => Recurse(e, lvl + 1)).SelectMany(e => e);
-			return new[] { Nod.Make(node.V, children) };
+			var kidren = node.Kids.Select(e => Recurse(e, lvl + 1)).SelectMany(e => e);
+			return new[] { Nod.Make(node.V, kidren) };
 		}
 		return Recurse(root, 0);
 	}
@@ -78,36 +78,36 @@ public static class Algo_Filter
 
 	private static TNod<T>[] Filter_KeepIfMatchingOnly<T>(this TNod<T> root, Func<TNod<T>, int, bool> predicate)
 	{
-		List<TNod<T>> FindMatchingChildren(TNod<T> topNode, bool includeTopNodeIfMatch, int lvl)
+		List<TNod<T>> FindMatchingKidren(TNod<T> topNode, bool includeTopNodeIfMatch, int lvl)
 		{
 			if (includeTopNodeIfMatch && predicate(topNode, lvl))
 				return new List<TNod<T>> { topNode };
 
-			var filteredChildren = new List<TNod<T>>();
+			var filteredKidren = new List<TNod<T>>();
 
 			void Recurse(TNod<T> _node, int _lvl)
 			{
-				foreach (var child in _node.Kids)
+				foreach (var kid in _node.Kids)
 				{
-					if (predicate(child, _lvl))
+					if (predicate(kid, _lvl))
 					{
-						var filteredChild = BuildRecurse(child, _lvl);
-						filteredChildren.Add(filteredChild);
+						var filteredKid = BuildRecurse(kid, _lvl);
+						filteredKidren.Add(filteredKid);
 					}
 					else
 					{
-						Recurse(child, _lvl + 1);
+						Recurse(kid, _lvl + 1);
 					}
 				}
 			}
 
 			Recurse(topNode, lvl + 1);
-			return filteredChildren;
+			return filteredKidren;
 		}
 
-		TNod<T> BuildRecurse(TNod<T> node, int lvl) => Nod.Make(node.V, FindMatchingChildren(node, false, lvl));
+		TNod<T> BuildRecurse(TNod<T> node, int lvl) => Nod.Make(node.V, FindMatchingKidren(node, false, lvl));
 
-		var outputNodes = FindMatchingChildren(root, true, 0).Select(BuildRecurse).ToArray();
+		var outputNodes = FindMatchingKidren(root, true, 0).Select(BuildRecurse).ToArray();
 
 		return outputNodes;
 	}

@@ -6,22 +6,22 @@ public static class Algo_RemoveTransitiveDependencies
 	{
 		var cmp = cmpFun ?? EqualityComparer<T>.Default;
 		var descendentMap = root.ToDictionary(e => e, e => GetAllDescendents(e, cmp));
-		bool IsInDescendents(IEnumerable<TNod<T>> parents, TNod<T> child) => parents.Any(parent => descendentMap[parent].Contains(child.V));
+		bool IsInDescendents(IEnumerable<TNod<T>> dads, TNod<T> kid) => dads.Any(dad => descendentMap[dad].Contains(kid.V));
 
 		TNod<T> Rec(TNod<T> n)
 		{
 			var listTodo = new Queue<TNod<T>>(n.Kids);
 			var listDone = new List<TNod<T>>();
-			var parents = n.GetParents(cmp);
+			var dads = n.GetDads(cmp);
 
-			while (listTodo.TryDequeue(out var child))
+			while (listTodo.TryDequeue(out var kid))
 			{
 				var isSomewhereElse =
-					parents.Contains(child.V) ||
-					IsInDescendents(listTodo, child) ||
-					IsInDescendents(listDone, child);
+					dads.Contains(kid.V) ||
+					IsInDescendents(listTodo, kid) ||
+					IsInDescendents(listDone, kid);
 				if (!isSomewhereElse)
-					listDone.Add(child);
+					listDone.Add(kid);
 			}
 
 			return Nod.Make(n.V, listDone.Select(Rec));
@@ -32,7 +32,7 @@ public static class Algo_RemoveTransitiveDependencies
 
 	private static HashSet<T> GetAllDescendents<T>(this TNod<T> root, IEqualityComparer<T> cmp) => new(root.Skip(1).Select(e => e.V), cmp);
 
-	private static HashSet<T> GetParents<T>(this TNod<T> root, IEqualityComparer<T> cmp)
+	private static HashSet<T> GetDads<T>(this TNod<T> root, IEqualityComparer<T> cmp)
 	{
 		var set = new HashSet<T>(cmp);
 		var node = root.Dad;

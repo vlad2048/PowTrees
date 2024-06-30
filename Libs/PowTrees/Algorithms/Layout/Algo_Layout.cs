@@ -78,16 +78,16 @@ public static class Algo_Layout
 			// "height of nod"
 			var hn = nod.V.Height;
 
-			// "height of children"
+			// "height of kidren"
 			var hc = hcMap[nod];
 
-			// "total height" of nod and its children
+			// "total height" of nod and its kidren
 			var ht = Math.Max(hn, hc);
 
-			// Layout nod and its children within [y .. y + ht]
+			// Layout nod and its kidren within [y .. y + ht]
 			// ================================================
 			// (1) ht >= hn     if ht > hn => shift nod      to be in the center of ht
-			// (2) ht >= hc     if ht > hc => shift children to be in the center of ht
+			// (2) ht >= hc     if ht > hc => shift kidren to be in the center of ht
 
 			// (1)
 			ys[nod] = y + (ht - hn) / 2;	// => RESULT
@@ -204,11 +204,11 @@ public static class Algo_Layout
 		Func<T, U?, U> fun
 	)
 	{
-		TNod<U> Recurse(TNod<T> node, U? mayMappedParentVal)
+		TNod<U> Recurse(TNod<T> node, U? mayMappedDadVal)
 		{
-			var mappedNodeVal = fun(node.V, mayMappedParentVal);
-			var mappedChildren = node.Kids.Select(child => Recurse(child, mappedNodeVal));
-			var mappedNode = Nod.Make(mappedNodeVal, mappedChildren);
+			var mappedNodeVal = fun(node.V, mayMappedDadVal);
+			var mappedKidren = node.Kids.Select(kid => Recurse(kid, mappedNodeVal));
+			var mappedNode = Nod.Make(mappedNodeVal, mappedKidren);
 			return mappedNode;
 		}
 

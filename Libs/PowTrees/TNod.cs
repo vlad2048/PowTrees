@@ -3,8 +3,8 @@
 // ReSharper disable once CheckNamespace
 public static class Nod
 {
-	public static TNod<T> Make<T>(T v, IEnumerable<TNod<T>>? children = null) => new(v, children);
-	public static TNod<T> Make<T>(T v, params TNod<T>[] children) => new(v, children);
+	public static TNod<T> Make<T>(T v, IEnumerable<TNod<T>>? kidren = null) => new(v, kidren);
+	public static TNod<T> Make<T>(T v, params TNod<T>[] kidren) => new(v, kidren);
 }
 
 
@@ -16,14 +16,14 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 	public TNod<T>? Dad { get; private set; }
 	public IReadOnlyList<TNod<T>> Kids => kids;
 
-	internal TNod(T v, IEnumerable<TNod<T>>? children)
+	internal TNod(T v, IEnumerable<TNod<T>>? kidren)
 	{
 		V = v;
-		if (children != null)
-			foreach (var child in children)
+		if (kidren != null)
+			foreach (var kid in kidren)
 			{
-				this.kids.Add(child);
-				child.Dad = this;
+				this.kids.Add(kid);
+				kid.Dad = this;
 			}
 	}
 
@@ -42,44 +42,44 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 
 	public void ChangeContent(T v) => V = v;
 
-	public void AddChild(TNod<T> child)
+	public void AddKid(TNod<T> kid)
 	{
-		kids.Add(child);
-		child.Dad = this;
+		kids.Add(kid);
+		kid.Dad = this;
 	}
 
-	public void InsertChild(TNod<T> child, int index)
+	public void InsertKid(TNod<T> kid, int index)
 	{
-		kids.Insert(index, child);
-		child.Dad = this;
+		kids.Insert(index, kid);
+		kid.Dad = this;
 	}
 	
-	public void RemoveChild(TNod<T> child)
+	public void RemoveKid(TNod<T> kid)
 	{
-		child.Dad = null;
-		kids.Remove(child);
+		kid.Dad = null;
+		kids.Remove(kid);
 	}
 
-	public void ReplaceChild(TNod<T> childPrev, TNod<T> childNext)
+	public void ReplaceKid(TNod<T> kidPrev, TNod<T> kidNext)
 	{
-		var index = kids.IndexOf(childPrev);
+		var index = kids.IndexOf(kidPrev);
 		if (index == -1) throw new ArgumentException();
-		childPrev.Dad = null;
-		kids[index] = childNext;
-		childNext.Dad = this;
+		kidPrev.Dad = null;
+		kids[index] = kidNext;
+		kidNext.Dad = this;
 	}
 
-	public void ClearChildren()
+	public void ClearKidren()
 	{
-		foreach (var child in Kids)
-			child.Dad = null;
+		foreach (var kid in Kids)
+			kid.Dad = null;
 		kids.Clear();
 	}
 
-	public void AddChildren(IEnumerable<TNod<T>> kids)
+	public void AddKidren(IEnumerable<TNod<T>> kids)
 	{
 		foreach (var kid in kids)
-			AddChild(kid);
+			AddKid(kid);
 	}
 
 	public IEnumerator<TNod<T>> GetEnumerator() => Enumerate();
@@ -90,9 +90,9 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 		IEnumerable<TNod<T>> Recurse(TNod<T> node)
 		{
 			yield return node;
-			foreach (var child in node.Kids)
-			foreach (var childRes in Recurse(child))
-				yield return childRes;
+			foreach (var kid in node.Kids)
+			foreach (var kidRes in Recurse(kid))
+				yield return kidRes;
 		}
 		foreach (var res in Recurse(this))
 			yield return res;

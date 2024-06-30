@@ -4,7 +4,7 @@ public static class Algo_FoldL
 {
 	/// <summary>
 	/// Map a tree recursively.
-	/// For each node, we use the node and the mapped parent as input
+	/// For each node, we use the node and the mapped dad as input
 	/// </summary>
 	public static TNod<U> FoldL<T, U>(
 		this TNod<T> root,
@@ -12,11 +12,11 @@ public static class Algo_FoldL
 		U seed
 	)
 	{
-		TNod<U> Recurse(TNod<T> node, U mayMappedParentVal)
+		TNod<U> Recurse(TNod<T> node, U mayMappedDadVal)
 		{
-			var mappedNodeVal = fun(node, mayMappedParentVal);
-			var mappedChildren = node.Kids.Select(child => Recurse(child, mappedNodeVal));
-			var mappedNode = Nod.Make(mappedNodeVal, mappedChildren);
+			var mappedNodeVal = fun(node, mayMappedDadVal);
+			var mappedKidren = node.Kids.Select(kid => Recurse(kid, mappedNodeVal));
+			var mappedNode = Nod.Make(mappedNodeVal, mappedKidren);
 			return mappedNode;
 		}
 
@@ -24,7 +24,7 @@ public static class Algo_FoldL
 	}
 
 
-	public static TNod<U> FoldL_Parent<T, U>(
+	public static TNod<U> FoldL_Dad<T, U>(
 		this TNod<T> root,
 		Func<T, U> get,
 		Func<U, U, U> fun,
@@ -33,7 +33,7 @@ public static class Algo_FoldL
 		root.FoldL(
 			(nod, acc) =>
 				fun(
-					nod.ParentOr(get, seed),
+					nod.DadOr(get, seed),
 					acc
 				),
 			seed
@@ -49,7 +49,7 @@ public static class Algo_FoldL
 		root.Zip(root.FoldL((nod, acc) => fun(nod.V, acc), seed)).ToDictionary(e => e.First.V, e => e.Second.V);
 
 
-	public static IReadOnlyDictionary<T, U> FoldL_Parent_Dict<T, U>(
+	public static IReadOnlyDictionary<T, U> FoldL_Dad_Dict<T, U>(
 		this TNod<T> root,
 		Func<T, U> get,
 		Func<U, U, U> fun,
@@ -60,7 +60,7 @@ public static class Algo_FoldL
 			root.FoldL(
 				(nod, acc) =>
 					fun(
-						nod.ParentOr(get, seed),
+						nod.DadOr(get, seed),
 						acc
 					),
 				seed
@@ -68,7 +68,7 @@ public static class Algo_FoldL
 		).ToDictionary(e => e.First.V, e => e.Second.V);
 
 	
-	public static U ParentOr<T, U>(this TNod<T> nod, Func<T, U> fun, U seed) => nod.Dad switch
+	public static U DadOr<T, U>(this TNod<T> nod, Func<T, U> fun, U seed) => nod.Dad switch
 	{
 		not null => fun(nod.Dad.V),
 		null => seed

@@ -60,5 +60,5 @@ static class Program
 			writer.SurroundWith(AsciiBoxes.Single, Color.DodgerBlue);
 	}
 
-	private static TNod<T> N<T>(T v, params TNod<T>[] children) => Nod.Make(v, children);
+	private static TNod<T> N<T>(T v, params TNod<T>[] kidren) => Nod.Make(v, kidren);
 }
