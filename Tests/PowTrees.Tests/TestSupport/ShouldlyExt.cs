@@ -1,4 +1,5 @@
-﻿using PowTrees.Algorithms;
+﻿using NUnit.Framework.Legacy;
+using PowTrees.Algorithms;
 using Shouldly;
 
 namespace PowTrees.Tests.TestSupport;
