@@ -15,6 +15,17 @@ Tree structure with algorithms
 
 ## Usage
 
+### JSON Serialization
+```c#
+TNod<T> root;
+
+var jsonOpt = new JsonSerializerOptions();
+jsonOpt.Converters.Add(NodConverterFactory.Instance);
+
+var str = JsonSerializer.Serialize(root, jsonOpt);
+var rootOut = JsonSerializer.Deserialize<TNod<T>>(str, jsonOpt)!;
+```
+
 ### FoldL
 Map a tree recursively. For each node, we use the node and the mapped parent as input
 
