@@ -15,7 +15,7 @@ public static class Algo_FoldL
 		TNod<U> Recurse(TNod<T> node, U mayMappedParentVal)
 		{
 			var mappedNodeVal = fun(node, mayMappedParentVal);
-			var mappedChildren = node.Children.Select(child => Recurse(child, mappedNodeVal));
+			var mappedChildren = node.Kids.Select(child => Recurse(child, mappedNodeVal));
 			var mappedNode = Nod.Make(mappedNodeVal, mappedChildren);
 			return mappedNode;
 		}
@@ -68,9 +68,9 @@ public static class Algo_FoldL
 		).ToDictionary(e => e.First.V, e => e.Second.V);
 
 	
-	public static U ParentOr<T, U>(this TNod<T> nod, Func<T, U> fun, U seed) => nod.Parent switch
+	public static U ParentOr<T, U>(this TNod<T> nod, Func<T, U> fun, U seed) => nod.Dad switch
 	{
-		not null => fun(nod.Parent.V),
+		not null => fun(nod.Dad.V),
 		null => seed
 	};
 }

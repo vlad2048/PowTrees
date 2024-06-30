@@ -11,11 +11,7 @@ class Algo_Layout_Tests
 	{
 		var str = File.ReadAllText(TestCaseFile);
 		var tcs = str.Deser<TestCase[]>();
-
-		for (var index = 0; index < tcs.Length; index++)
-		{
-			var tc = tcs[index];
+		foreach (var tc in tcs)
 			TestCaseUtils.Verify(tc);
-		}
 	}
 }

@@ -36,7 +36,7 @@ public static class Algo_Filter
 
 		TNod<T> Rec(TNod<T> node) => Nod.Make(
 			node.V,
-			node.Children
+			node.Kids
 				.Where(Keep)
 				.Select(Rec)
 		);
@@ -69,7 +69,7 @@ public static class Algo_Filter
 		TNod<T>[] Recurse(TNod<T> node, int lvl)
 		{
 			if (!predicate(node, lvl)) return Array.Empty<TNod<T>>();
-			var children = node.Children.Select(e => Recurse(e, lvl + 1)).SelectMany(e => e);
+			var children = node.Kids.Select(e => Recurse(e, lvl + 1)).SelectMany(e => e);
 			return new[] { Nod.Make(node.V, children) };
 		}
 		return Recurse(root, 0);
@@ -87,7 +87,7 @@ public static class Algo_Filter
 
 			void Recurse(TNod<T> _node, int _lvl)
 			{
-				foreach (var child in _node.Children)
+				foreach (var child in _node.Kids)
 				{
 					if (predicate(child, _lvl))
 					{

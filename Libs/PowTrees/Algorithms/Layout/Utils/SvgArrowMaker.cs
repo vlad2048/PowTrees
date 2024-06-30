@@ -65,8 +65,8 @@ public static class SvgArrowMaker
 			}
 		}
 		
-		root.Where(e => e.Children.Count == 1).ForEach(e => DrawSingleArrow(e.V, e.Children[0].V));
-		root.Where(e => e.Children.Count > 1).ForEach(e => DrawMultipleArrows(e.V, e.Children.Select(f => f.V).ToArray()));
+		root.Where(e => e.Kids.Count == 1).ForEach(e => DrawSingleArrow(e.V, e.Kids[0].V));
+		root.Where(e => e.Kids.Count > 1).ForEach(e => DrawMultipleArrows(e.V, e.Kids.Select(f => f.V).ToArray()));
 
 		return new SvgArrowNfo(
 			$$"""

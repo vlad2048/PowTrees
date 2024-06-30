@@ -26,7 +26,7 @@ static class LayoutExt
 	
 	public static TNod<R> GetRTree<T>(this Dictionary<TNod<T>, R> layout) =>
 		layout
-			.Keys.Single(e => e.Parent == null)
+			.Keys.Single(e => e.Dad == null)
 			.MapN(e => layout[e]);
 
 	public static Dictionary<TNod<T>, R> Offset<T>(this Dictionary<TNod<T>, R> layout, Pt ofs) =>

@@ -94,7 +94,7 @@ public static class Algo_Layout
 
 			// (2)
 			y += (ht - hc) / 2;
-			foreach (var c in nod.Children)
+			foreach (var c in nod.Kids)
 				y += Recurse(c, y);
 
 			return ht;
@@ -116,7 +116,7 @@ public static class Algo_Layout
 		var resMap = new Dictionary<TNod<T>, U>();
 		foreach (var (n, _) in map)
 		{
-			resMap[n] = combFun(n.Children.Select(e => map[e]));
+			resMap[n] = combFun(n.Kids.Select(e => map[e]));
 		}
 		return resMap;
 	}
@@ -129,10 +129,10 @@ public static class Algo_Layout
 		var resMap = new Dictionary<TNod<T>, U>();
 		foreach (var (n, _) in map)
 		{
-			resMap[n] = n.Parent switch
+			resMap[n] = n.Dad switch
 			{
 				null => rootVal,
-				not null => map[n.Parent]
+				not null => map[n.Dad]
 			};
 		}
 		return resMap;
@@ -207,7 +207,7 @@ public static class Algo_Layout
 		TNod<U> Recurse(TNod<T> node, U? mayMappedParentVal)
 		{
 			var mappedNodeVal = fun(node.V, mayMappedParentVal);
-			var mappedChildren = node.Children.Select(child => Recurse(child, mappedNodeVal));
+			var mappedChildren = node.Kids.Select(child => Recurse(child, mappedNodeVal));
 			var mappedNode = Nod.Make(mappedNodeVal, mappedChildren);
 			return mappedNode;
 		}

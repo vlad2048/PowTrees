@@ -6,11 +6,11 @@ public static class Algo_ZipTree
 	{
 		TNod<(T, U)> Recurse(TNod<T> nodeA, TNod<U> nodeB)
 		{
-			if (nodeA.Children.Count != nodeB.Children.Count)
+			if (nodeA.Kids.Count != nodeB.Kids.Count)
 				throw new ArgumentException("Cannot Zip trees with mismatched nodes");
 			return Nod.Make(
 				(nodeA.V, nodeB.V),
-				nodeA.Children.Zip(nodeB.Children)
+				nodeA.Kids.Zip(nodeB.Kids)
 					.Select(t => Recurse(t.First, t.Second))
 			);
 		}
@@ -23,11 +23,11 @@ public static class Algo_ZipTree
 	{
 		TNod<(TNod<T>, TNod<U>)> Recurse(TNod<T> nodeA, TNod<U> nodeB)
 		{
-			if (nodeA.Children.Count != nodeB.Children.Count)
+			if (nodeA.Kids.Count != nodeB.Kids.Count)
 				throw new ArgumentException("Cannot Zip trees with mismatched nodes");
 			return Nod.Make(
 				(nodeA, nodeB),
-				nodeA.Children.Zip(nodeB.Children)
+				nodeA.Kids.Zip(nodeB.Kids)
 					.Select(t => Recurse(t.First, t.Second))
 			);
 		}

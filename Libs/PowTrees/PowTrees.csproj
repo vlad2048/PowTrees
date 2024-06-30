@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PowBasics" Version="0.0.35" />
-		<PackageReference Include="PowBasics.Geom" Version="0.0.35" />
+		<PackageReference Include="PowBasics" Version="0.1.6" />
+		<PackageReference Include="PowBasics.Geom" Version="0.1.6" />
 	</ItemGroup>
 
 	<ItemGroup>

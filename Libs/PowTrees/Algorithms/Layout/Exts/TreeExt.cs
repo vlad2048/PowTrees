@@ -27,7 +27,7 @@ static class TreeExt
 		void Recurse(TNod<T> node, int level)
 		{
 			action(node, level);
-			foreach (var child in node.Children)
+			foreach (var child in node.Kids)
 				Recurse(child, level + 1);
 		}
 		Recurse(root, 0);

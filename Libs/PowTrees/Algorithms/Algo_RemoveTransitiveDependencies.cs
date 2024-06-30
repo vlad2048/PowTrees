@@ -10,9 +10,8 @@ public static class Algo_RemoveTransitiveDependencies
 
 		TNod<T> Rec(TNod<T> n)
 		{
-			var listTodo = new Queue<TNod<T>>(n.Children);
+			var listTodo = new Queue<TNod<T>>(n.Kids);
 			var listDone = new List<TNod<T>>();
-			//var listRejected = new List<TNod<T>>();
 			var parents = n.GetParents(cmp);
 
 			while (listTodo.TryDequeue(out var child))
@@ -21,14 +20,8 @@ public static class Algo_RemoveTransitiveDependencies
 					parents.Contains(child.V) ||
 					IsInDescendents(listTodo, child) ||
 					IsInDescendents(listDone, child);
-				if (isSomewhereElse)
-				{
-					//listRejected.Add(child);
-				}
-				else
-				{
+				if (!isSomewhereElse)
 					listDone.Add(child);
-				}
 			}
 
 			return Nod.Make(n.V, listDone.Select(Rec));
@@ -42,32 +35,12 @@ public static class Algo_RemoveTransitiveDependencies
 	private static HashSet<T> GetParents<T>(this TNod<T> root, IEqualityComparer<T> cmp)
 	{
 		var set = new HashSet<T>(cmp);
-		var node = root.Parent;
+		var node = root.Dad;
 		while (node != null)
 		{
 			set.Add(node.V);
-			node = node.Parent;
+			node = node.Dad;
 		}
 		return set;
 	}
-
-
-	/*public static TNod<T> RemoveTransitiveDependencies<T>(this TNod<T> root, IEqualityComparer<T>? cmpFun = null)
-	{
-		bool IsValid(TNod<T> n) => !n.GetParents().Contains(n.V, cmpFun);
-		TNod<T> MakeNod(TNod<T> n) => Nod.Make(n.V, n.Children.Where(IsValid).SelectToArray(MakeNod));
-		return MakeNod(root);
-	}
-
-	private static T[] GetParents<T>(this TNod<T> root)
-	{
-		var list = new List<T>();
-		var node = root.Parent;
-		while (node != null)
-		{
-			list.Add(node.V);
-			node = node.Parent;
-		}
-		return list.ToArray();
-	}*/
 }

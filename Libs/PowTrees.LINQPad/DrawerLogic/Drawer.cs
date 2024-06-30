@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using LINQPad.Controls;
 using PowBasics.Geom;
+using PowTrees.Algorithms;
 using PowTrees.LINQPad.Utils;
 
 namespace PowTrees.LINQPad.DrawerLogic;
@@ -97,8 +98,8 @@ sealed class Drawer : IDrawer
 
 	public void Arrows(TNod<R> root)
 	{
-		root.Where(e => e.Children.Count == 1).ForEach(e => DrawSingleArrow(e.V, e.Children[0].V));
-		root.Where(e => e.Children.Count > 1).ForEach(e => DrawMultipleArrows(e.V, e.Children.Select(f => f.V).ToArray()));
+		root.Where(e => e.Kids.Count == 1).ForEach(e => DrawSingleArrow(e.V, e.Kids[0].V));
+		root.Where(e => e.Kids.Count > 1).ForEach(e => DrawMultipleArrows(e.V, e.Kids.Select(f => f.V).ToArray()));
 	}
 
 	private void DrawSingleArrow(R srcR, R dstR)

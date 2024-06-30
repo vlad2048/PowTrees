@@ -10,11 +10,11 @@ public static class Nod
 
 public sealed class TNod<T> : IEnumerable<TNod<T>>
 {
-	private readonly List<TNod<T>> children = new();
+	private readonly List<TNod<T>> kids = new();
 
 	public T V { get; private set; }
-	public TNod<T>? Parent { get; private set; }
-	public IReadOnlyList<TNod<T>> Children => children;
+	public TNod<T>? Dad { get; private set; }
+	public IReadOnlyList<TNod<T>> Kids => kids;
 
 	internal TNod(T v, IEnumerable<TNod<T>>? children)
 	{
@@ -22,8 +22,8 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 		if (children != null)
 			foreach (var child in children)
 			{
-				this.children.Add(child);
-				child.Parent = this;
+				this.kids.Add(child);
+				child.Dad = this;
 			}
 	}
 
@@ -44,36 +44,36 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 
 	public void AddChild(TNod<T> child)
 	{
-		children.Add(child);
-		child.Parent = this;
+		kids.Add(child);
+		child.Dad = this;
 	}
 
 	public void InsertChild(TNod<T> child, int index)
 	{
-		children.Insert(index, child);
-		child.Parent = this;
+		kids.Insert(index, child);
+		child.Dad = this;
 	}
 	
 	public void RemoveChild(TNod<T> child)
 	{
-		child.Parent = null;
-		children.Remove(child);
+		child.Dad = null;
+		kids.Remove(child);
 	}
 
 	public void ReplaceChild(TNod<T> childPrev, TNod<T> childNext)
 	{
-		var index = children.IndexOf(childPrev);
+		var index = kids.IndexOf(childPrev);
 		if (index == -1) throw new ArgumentException();
-		childPrev.Parent = null;
-		children[index] = childNext;
-		childNext.Parent = this;
+		childPrev.Dad = null;
+		kids[index] = childNext;
+		childNext.Dad = this;
 	}
 
 	public void ClearChildren()
 	{
-		foreach (var child in Children)
-			child.Parent = null;
-		children.Clear();
+		foreach (var child in Kids)
+			child.Dad = null;
+		kids.Clear();
 	}
 
 	public void AddChildren(IEnumerable<TNod<T>> kids)
@@ -90,7 +90,7 @@ public sealed class TNod<T> : IEnumerable<TNod<T>>
 		IEnumerable<TNod<T>> Recurse(TNod<T> node)
 		{
 			yield return node;
-			foreach (var child in node.Children)
+			foreach (var child in node.Kids)
 			foreach (var childRes in Recurse(child))
 				yield return childRes;
 		}

@@ -8,7 +8,7 @@ public static class Algo_Map
 
 	public static TNod<U> MapN<T, U>(this TNod<T> root, Func<TNod<T>, int, U> mapFun)
 	{
-		TNod<U> Recurse(TNod<T> node, int lvl) => Nod.Make(mapFun(node, lvl), node.Children.Select(e => Recurse(e, lvl + 1)));
+		TNod<U> Recurse(TNod<T> node, int lvl) => Nod.Make(mapFun(node, lvl), node.Kids.Select(e => Recurse(e, lvl + 1)));
 		return Recurse(root, 0);
 	}
 
@@ -20,7 +20,7 @@ public static class Algo_Map
 	public static TNod<U> MapNIdx<T, U>(this TNod<T> root, Func<TNod<T>, int, U> mapFun)
 	{
 		var idx = 0;
-		TNod<U> Recurse(TNod<T> node) => Nod.Make(mapFun(node, idx++), node.Children.Select(Recurse));
+		TNod<U> Recurse(TNod<T> node) => Nod.Make(mapFun(node, idx++), node.Kids.Select(Recurse));
 		return Recurse(root);
 	}
 }

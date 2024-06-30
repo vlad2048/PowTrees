@@ -13,8 +13,8 @@ public static class Algo_Navigate
 	public static TNod<T> GoUpToRootOrUntilN<T>(this TNod<T> nod, Func<TNod<T>, bool> predicate)
 	{
 		var curNod = nod;
-		while (curNod.Parent != null && !predicate(curNod))
-			curNod = curNod.Parent;
+		while (curNod.Dad != null && !predicate(curNod))
+			curNod = curNod.Dad;
 		return curNod;
 	}
 }

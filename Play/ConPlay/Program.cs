@@ -8,27 +8,8 @@ namespace ConPlay;
 
 static class Program
 {
-	/*static void TestBug()
-	{
-		var r =
-			N(3,
-				N(5,
-					N(7)
-				)
-			);
-
-		var t = r.Children.First();
-
-		var lines = t.Log();
-		foreach (var line in lines)
-			Console.WriteLine(line);
-	}*/
-
 	static void Main()
 	{
-		//TestBug();
-		//return;
-
 		var root0 =
 			N(0,
 				N(1),

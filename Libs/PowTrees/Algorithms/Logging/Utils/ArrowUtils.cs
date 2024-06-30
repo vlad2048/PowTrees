@@ -26,18 +26,18 @@ static class ArrowUtils
         var chArrow = "►";
 
         root
-            .Where(e => e.Children.Count == 1).ForEach(n =>
+            .Where(e => e.Kids.Count == 1).ForEach(n =>
             {
-                var d = n.Children[0].V.X - (n.V.X + n.V.Width);
+                var d = n.Kids[0].V.X - (n.V.X + n.V.Width);
                 print(n.V.OnTheRight(), $"{new string(chHoriz[0], d - 1)}{chArrow}");
             });
 
         root
-            .Where(e => e.Children.Count > 1)
+            .Where(e => e.Kids.Count > 1)
             .ForEach(n =>
             {
                 var rp = n.V;
-                var rcs = n.Children.SelectToArray(e => e.V);
+                var rcs = n.Kids.SelectToArray(e => e.V);
                 var xMid = (rp.X + rp.Width + rcs[0].X - 1) / 2;
                 var yMid = rp.YMid();
                 var yMin = rcs.First().YMid();

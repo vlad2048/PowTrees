@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using PowBasics.Geom.Serializers;
 using PowTrees.Serializer;
 
 namespace PowTrees.Tests.Algorithms.Layout.TestSupport;
@@ -13,8 +12,7 @@ public static class TJson
 	
 	static TJson()
 	{
-		jsonOpt.Converters.Add(new TNodSerializer<Rec>());
-		jsonOpt.Converters.Add(new RSerializer());
+		jsonOpt.Converters.Add(NodConverterFactory.Instance);
 	}
 	
 	public static string Ser<T>(this T obj) => JsonSerializer.Serialize(obj, jsonOpt);
