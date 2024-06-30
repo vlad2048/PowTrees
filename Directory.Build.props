@@ -13,7 +13,12 @@
 		<PackageTags>Tree structure, Tree algorithms</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/vlad2048/PowTrees</PackageProjectUrl>
+    <SolutionDirectory>$(MSBuildThisFileDirectory.TrimEnd('\\'))</SolutionDirectory>
 	</PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(SolutionDirectory)\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 	<PropertyGroup>
 		<NoWarn>CS1591</NoWarn>

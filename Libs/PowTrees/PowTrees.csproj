@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -8,13 +8,6 @@
 	<ItemGroup>
 		<PackageReference Include="PowBasics" Version="0.1.6" />
 		<PackageReference Include="PowBasics.Geom" Version="0.1.6" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Algorithms\Layout\Utils\" />
-		<Folder Include="Algorithms\Layout\Structs\" />
-		<Folder Include="Algorithms\Logging\Utils\" />
-		<Folder Include="Utils\" />
 	</ItemGroup>
 
 </Project>
