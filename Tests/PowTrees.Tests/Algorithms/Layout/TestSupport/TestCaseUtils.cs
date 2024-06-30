@@ -1,5 +1,4 @@
-﻿using NUnit.Framework.Legacy;
-using PowTrees.Algorithms;
+﻿using PowTrees.Algorithms;
 
 namespace PowTrees.Tests.Algorithms.Layout.TestSupport;
 
@@ -17,6 +16,6 @@ public static class TestCaseUtils
 		var (tree, expRs) = tc;
 		var layout = tree.Layout(e => e.Size);
 		var actRs = tree.MapN(e => layout[e]).Select(e => e.V).ToArray();
-		CollectionAssert.AreEqual(expRs, actRs);
+		Assert.That(actRs, Is.EqualTo(expRs));
 	}
 }

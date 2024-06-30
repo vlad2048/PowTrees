@@ -1,5 +1,4 @@
-﻿using NUnit.Framework.Legacy;
-using PowTrees.Algorithms;
+﻿using PowTrees.Algorithms;
 using Shouldly;
 
 namespace PowTrees.Tests.TestSupport;
@@ -50,7 +49,7 @@ static class ShouldlyExt
 		actLines.Log("Actual");
 		expLines.Log("Expected");
 
-		CollectionAssert.AreEqual(expLines, actLines);
+		Assert.That(actLines, Is.EqualTo(expLines));
 	}
 
 	private static string[] SplitInLines(this string? str) => str == null ? Array.Empty<string>() : str.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
