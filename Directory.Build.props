@@ -1,19 +1,20 @@
 <Project>
 
 	<PropertyGroup>
+		<TargetFrameworks>net6.0;net9.0</TargetFrameworks>
 		<LangVersion>preview</LangVersion>
 		<EnablePreviewFeatures>True</EnablePreviewFeatures>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<DebugType>embedded</DebugType>
-		<Version>0.1.2</Version>
+		<Version>0.2.0</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Authors>vlad2048</Authors>
 		<Description>Tree structure with algorithms</Description>
 		<PackageTags>Tree structure, Tree algorithms</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/vlad2048/PowTrees</PackageProjectUrl>
-    <SolutionDirectory>$(MSBuildThisFileDirectory.TrimEnd('\\'))</SolutionDirectory>
+		<SolutionDirectory>$(MSBuildThisFileDirectory.TrimEnd('\\'))</SolutionDirectory>
 	</PropertyGroup>
 
   <ItemGroup>
