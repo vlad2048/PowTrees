@@ -7,7 +7,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<DebugType>embedded</DebugType>
-		<Version>0.2.0</Version>
+		<Version>0.2.1</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Authors>vlad2048</Authors>
 		<Description>Tree structure with algorithms</Description>
